@@ -2,7 +2,8 @@ const potrace = require("potrace");
 const fs = require("fs");
 const path = require("path");
 const ProgressBar = require("progress");
-const inputDir = path.join(__dirname, "crop_v5");
+// const inputDir = path.join(__dirname, "crop_v5");
+const inputDir = path.join("C:\\Users\\lawrence\\PycharmProjects\\SDT\\Generated\\Chinese_User");
 const outputDir = path.join(__dirname, "svg_separate");
 
 // 讀取資料夾中的所有檔案
@@ -14,7 +15,7 @@ fs.readdir(inputDir, function (err, files) {
   });
 
   const totalFiles = pngFiles.length;
-  const progressBar = new ProgressBar("轉換進度 [:bar] :percent :etas", {
+  const progressBar = new ProgressBar("转换进度 [:bar] :percent :etas", {
     complete: "=",
     incomplete: " ",
     width: 50,
@@ -44,7 +45,7 @@ fs.readdir(inputDir, function (err, files) {
     } else {
       const endTime = Date.now(); // 記錄完成時間
       const elapsedTime = (endTime - startTime) / 1000; // 計算耗時（秒）
-      console.log("轉換完成，共耗時:", elapsedTime.toFixed(2), "秒");
+      console.log("转换完成，共耗时:", elapsedTime.toFixed(2), "秒");
     }
   }
 

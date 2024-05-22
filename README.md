@@ -1,9 +1,4 @@
-# 打包字體說明書
-
-將切割好的手寫字 png 檔打包成 ttf 檔流程 :dog:
-網址：https://github.com/chiaoooo/PngToTTF
-
-### 下載專案進行轉換
+### env
 
 ```
 git clone https://github.com/chiaoooo/PngToTTF
@@ -11,36 +6,29 @@ mkdir svg_separate
 mkdir final_font
 ```
 
-### 使用下列指令安裝所需套件
+### 转换Font
 
 ```
 npm install
 ```
 
 ### PNG ---> SVG
-
+- 修改 input 为自己的 png 文件夹
+- svg 结束在 svg_separate
 ```
 node potrace.js
 ```
 
-> 套件來源 https://www.npmjs.com/package/potrace
-
-- 記得將 input 路徑改為自己的 png 資料夾
-- svg 會存在 svg_separate
-
 ### SVG ---> SVG
 
-```
-node run_pico.js
-```
-
-> 套件來源 https://github.com/googlefonts/picosvg
-
 這個步驟為了讓 svg 中的 fill-rule="evenodd" 不被下一個步驟的 svgicons2svgfont 忽略。
-
+- 处于pytorch虚拟conda环境 先 pip install picosvg
 - M3 Pro 處理 5,345 字大約需要 148 秒
 - 處理過的 SVG 會存在 pico 資料夾
 - fillrule 的比較：
+```
+node run_pico.js
+```
 
 | NoneZero                                      | EvenOdd                                       |
 | --------------------------------------------- | --------------------------------------------- |
@@ -56,18 +44,17 @@ node run_pico.js
 | ![](https://hackmd.io/_uploads/S1GL40HMp.png) | ![](https://hackmd.io/_uploads/ByWUBABfT.png) | ![](https://hackmd.io/_uploads/H16kBRrfa.png) |
 
 ### SVG ---> SVG (打包成一個 SVG 檔)
-
-> 套件來源：https://www.npmjs.com/package/svgicons2svgfont
-
+- 执行没报错,但是没法生成
 這個步驟跟 https://chiaoooo.github.io/font-svg-viewer/ 不同的地方是不採取替換再打包的方法，而是直接打包現有的 svg 檔，節省空間及時間 ( 31026 kb 縮小至 9252 kb / 12 小時縮短至 2 分鐘 )。
+- 完成以後會在 final_font 裡面看到 fontpico.svg，將它丟入 FontForge 內並完成後續設定。
 
 ```
 node readfile.js
 ```
 
-- 完成以後會在 final_font 裡面看到 fontpico.svg，將它丟入 FontForge 內並完成後續設定。
-
 ### SVG ---> TTF
+
+安装FontForge 并在FontForge目录下创建一个SVG目录 并把生成好的svg放进去
 
 進入 FontForge 以後可以看到字不會有黑一塊一塊的，就代表成功了!
 ![](https://hackmd.io/_uploads/BJkrfeLGp.png)
