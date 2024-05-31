@@ -49,6 +49,7 @@ node run_pico.js
 
 ```shell
 ffpython to_ttf.py
+ffpython D:\\aProject\\py\\PngToTTF\\to_ttf.py
 ```
 
 ### 完成 !
